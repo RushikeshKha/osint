@@ -1,0 +1,7 @@
+CERTSH(){
+local URL_CERTSH="https://crt.sh\?q\="
+  echo "Crt.sh"
+    # Fixing
+     curl -s https://crt.sh/?q\=%.${DOMAIN}\&output\=json | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u >  ${OUT_CRTSH}
+
+}
