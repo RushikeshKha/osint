@@ -258,7 +258,7 @@ if [[ ${PLUGIN_WAPPALYZER} == true ]]; then
   }
 fi
 
-ARG_PARS_LIST() {
+SORT_DOMAINS() {
   #DATE_LOG=$(date +%m-%d-%Y)
   [[ ! -e "${OUT}/${DOMAIN}" ]] &&
     mkdir -p "${OUT}/${DOMAIN}" || true
@@ -267,7 +267,7 @@ ARG_PARS_LIST() {
   
   if [[ -f ${OUT}/${DOMAIN}/${RESULT_SUBDOMAIN} ]]; then
     COUNT=$(cat ${OUT}/${DOMAIN}/${RESULT_SUBDOMAIN} | wc -l)
-    echo $COUNT
+    echo "Total subdomains: "$COUNT
     cat ${OUT}/${DOMAIN}/${RESULT_SUBDOMAIN} |
       while read VERBOSE; do
         echo $VERBOSE
@@ -279,7 +279,7 @@ ARG_PARS_LIST() {
 
 source ${Engine_CrtSH}
 source ${Engine_Dnsdumpster}
-
+source ${Engine_Subfinder}
 current_date_time=$(date "+%Y-%m-%d %H:%M:%S")
 
 echo $DOMAIN
@@ -475,7 +475,7 @@ elif
 
   [[ ${SOURCE} == false ]]
 then
-  args_source=(DNSDUMPSTER CERTSH)
+  args_source=(DNSDUMPSTER CERTSH SUBFINDER)
   for i in "${!args_source[@]}"; do
     "${args_source[i]}" &
   done
@@ -484,24 +484,7 @@ fi
 
 echo -e "COUNT(SUBDOMAINS)"
 echo -e "---------------------------------------------\n"
-if [[ ${verbose} == true ]]; then
-  if [[ -f ${OUT_CRTSH} ]]; then
-    COUNT=$(cat ${OUT_CRTSH} | sort -u | wc -l)
-    echo -e "\n${PADDING}${YELLOW}${PADDING}⍥${PADDING}${RESET}CrtSH${RESET}${DPADDING}\t\t[${GREEN}${COUNT}${RESET}]"
-    cat ${OUT_CRTSH} |
-      while read VERBOSE; do
-        echo -e "\t - $VERBOSE"
-      done
-  fi
-  
-  ARG_PARS_LIST
-else
-  if [[ -f ${OUT_CRTSH} ]]; then
-    COUNT=$(cat ${OUT_CRTSH} | sort -u | wc -l)
-    echo -e "Total: ${COUNT}"
-  fi
-  ARG_PARS_LIST
-fi
+SORT_DOMAINS
 
 ## Calling Plugin
 

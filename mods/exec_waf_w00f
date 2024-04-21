@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+function exec_waf_w00f() {
+  which ${_WAF_W00F} >/dev/null
+  if [[ "$?" -eq "0" ]]; then
+    echo "WAF-W00F... "
+    echo -e "---------------------------------------------\n"
+
+    ${_WAF_W00F} -i "${OUT}/${DATE_LOG}/${DOMAIN}/${RESULT_SUBDOMAIN}" | grep behind > "${OUT}/${DATE_LOG}/${DOMAIN}/${RESULT_WAF_W00F}" | sed -e 's/^/\t - /'
+  else
+    echo "ERROR_WAF_W00F"
+
+  fi
+}

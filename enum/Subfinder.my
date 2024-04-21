@@ -1,0 +1,4 @@
+SUBFINDER(){ 
+	echo "SUBFINDER"
+	subfinder -silent -d hackerone.com > ${OUT_SUBFINDER}
+}

@@ -1,0 +1,13 @@
+function exec_snamp() {
+  which ${_SMAP} >/dev/null
+  if [[ "$?" -eq "0" ]]; then
+    echo -e "\n${BOLD}[${LGREEN}+${RESET}${BOLD}]${RESET} SMAP... "
+    echo -e "---------------------------------------------\n"
+    echo -e "\n${PADDING}${YELLOW}${PADDING}⍥${PADDING}${RESET}Execute ${RESET}\n"
+
+    ${_SMAP} hackerone.com -oJ "${OUT}/${DATE_LOG}/${DOMAIN}/${RESULT_SMAP}" | sed -e 's/^/\t - /'
+  else
+    echo "ERROR_SMAP"
+
+  fi
+}
