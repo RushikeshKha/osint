@@ -2,6 +2,6 @@
 echo -e "---------------------------------------------\n"
 echo "CVE FINDER ... "
 
-python3 /home/kali/ost/ThreatTracer/cvefinder.py ${DOMAIN}
+python3 ThreatTracer/cvefinder.py ${DOMAIN}
 
 echo -e "---------------------------------------------\n"
