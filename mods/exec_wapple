@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "WAPPLE ... "
+echo -e "---------------------------------------------\n"
+python3 /home/kali/ost/ThreatTracer/wapple.py ${DOMAIN}

@@ -177,6 +177,11 @@ while [[ "${#}" -gt 0 ]]; do
     PLUGIN_HTTPX_TOOLKIT=true
     shift
     ;;
+  \
+  "--wapple")
+    PLUGIN_WAPPLE=true
+    shift
+    ;;
 
   \
   "--smap")
@@ -506,6 +511,10 @@ if [[ ${PLUGIN_WAF_W00F} == true ]]; then
   source ${APP_WAF_W00F}
   echo "HERE"
   exec_waf_w00f
+fi
+
+if [[ ${PLUGIN_WAPPLE} == true ]]; then
+  source ${APP_WAPPLE}
 fi
 
 #Remove Temporary RAW DATA []
