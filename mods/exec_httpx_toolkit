@@ -8,6 +8,7 @@ function exec_httpx_toolkit() {
     
 
     ${_HTTPX_TOOLKIT} -l "${OUT}/${DOMAIN}/${RESULT_SUBDOMAIN}" -silent -title -cl -sc -td -ip -json > "${OUT}/${DOMAIN}/${RESULT_HTTPX_TOOLKIT}" | sed -e 's/^/\t - /'
+    echo -e "---------------------------------------------\n" 
   else
     echo "ERROR_HTTPX_TOOLKIT"
 

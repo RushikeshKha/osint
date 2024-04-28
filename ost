@@ -58,112 +58,6 @@ while [[ "${#}" -gt 0 ]]; do
     LIST=${2}
     shift
     shift
-
-    ;;
-    # Verbose
-  "-v" | "--verbose")
-    verbose=true
-    shift
-    ;;
-
-  "-ps" | "--ping-sweep")
-    PLUGIN_PING_SWEEP=true
-    shift
-    ;;
-
-  "-rs" | "--resolver")
-    PLUGIN_RESOLV_SD=true
-    shift
-    ;;
-
-  "-sc" | "--status-code")
-    PLUGIN_STATUS_CODE=true
-    shift
-    ;;
-
-  "-nt" | "--nmap-top")
-    PLUGIN_NMAP_PORTS=true
-    shift
-    ;;
-
-  "-to" | "--takeover")
-    PLUGIN_TAKEOVER=true
-    shift
-    ;;
-
-  "-ws" | "--websocket")
-    PLUGIN_WEBSOCKET=true
-    shift
-    ;;
-
-  \
-    "-cf" | "--cloudfare")
-    PLUGIN_CFCHECK=true
-    shift
-    ;;
-
-  \
-    \
-    "-ai" | "--apps-identifier")
-    APPS_IDENTIFIER=true
-    LIST_API=${2}
-    shift
-    shift
-    ;;
-
-  "-dp" | "--db-port")
-    PLUGIN_DB_PORT=true
-    shift
-    ;;
-
-  "-ep" | "--extract-params")
-    PLUGIN_EXTRACT_PARAMS=true
-    shift
-    ;;
-
-  \
-    "-ss" | "--screenshot")
-    PLUGIN_DOMAIN_SCREENSHOTS=true
-    LIST_SCREENSHOT=${2}
-    # PLUGIN_AQUATONE=true
-    PLUGIN_GOWITNESS=true
-    shift
-    shift
-    ;;
-
-  \
-    "-b" | "--bruteforce")
-    PLUGIN_GOBUSTER=true
-    shift
-    ;;
-
-  "-np" | "--no-passive")
-    SOURCE=none
-    shift
-    ;;
-
-  \
-    "--no-probe")
-    PLUGIN_HTTPROBE=false
-    shift
-    ;;
-
-  "-o" | "--outfile")
-    DESTINATION=true
-    OUTFILE=$2
-    shift
-    shift
-    ;;
-
-  \
-    "--html")
-    REPORTS=1
-    shift
-    ;;
-
-  "--slack")
-    SLACK=true
-    shift
     ;;
 
   \
@@ -502,7 +396,6 @@ SORT_DOMAINS
 # Plugin to check Title,Status Code, Lenght
 if [[ ${PLUGIN_HTTPX_TOOLKIT} == true ]]; then
   source ${APP_HTTPX_TOOLKIT}
-  echo "HERE"
   exec_httpx_toolkit
 fi
 
@@ -514,7 +407,6 @@ fi
 
 if [[ ${PLUGIN_WAF_W00F} == true ]]; then
   source ${APP_WAF_W00F}
-  echo "HERE"
   exec_waf_w00f
 fi
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-
-echo "WAPPLE ... "
 echo -e "---------------------------------------------\n"
+echo "WAPPLE ... "
+
 python3 /home/kali/ost/ThreatTracer/wapple.py ${DOMAIN}
+echo -e "---------------------------------------------\n"
