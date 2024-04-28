@@ -19,7 +19,7 @@ def find_cpes(component, version):
     return cpe_matches
 
 
-filename = "/home/kali/ost/output/"+sys.argv[1]+"/httpx_toolkit_status_title.json"
+filename = "output/"+sys.argv[1]+"/httpx_toolkit_status_title.json"
 data = []
 
 try:
@@ -49,7 +49,7 @@ else:
             pass
 
 
-with open("/home/kali/ost/output/"+sys.argv[1]+"/final.json", "w") as json_file:
+with open("output/"+sys.argv[1]+"/final.json", "w") as json_file:
     json.dump(data, json_file, indent=4)
 
 print("cvefinder: data saved successfully in ouput/"+sys.argv[1]+"/final.json")

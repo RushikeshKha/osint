@@ -44,7 +44,7 @@ def find_techs(url):
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Path to your JSON file
-filename = "/home/kali/ost/output/"+sys.argv[1]+"/httpx_toolkit_status_title.txt"
+filename = "output/"+sys.argv[1]+"/httpx_toolkit_status_title.txt"
 data = []
 wappel = []
 # Open the file in read mode
@@ -73,7 +73,7 @@ else:
 #keys = list(data.keys())
 #print(keys)
 
-with open("/home/kali/ost/output/"+sys.argv[1]+"/httpx_toolkit_status_title.json", "w") as json_file:
+with open("output/"+sys.argv[1]+"/httpx_toolkit_status_title.json", "w") as json_file:
     # Serialize the data into a JSON string using json.dumps
     json.dump(data, json_file, indent=4)  # Optional: indent for readability
 
