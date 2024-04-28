@@ -182,6 +182,11 @@ while [[ "${#}" -gt 0 ]]; do
     PLUGIN_WAPPLE=true
     shift
     ;;
+  \
+  "--cpe")
+    PLUGIN_CPE=true
+    shift
+    ;;
 
   \
   "--smap")
@@ -515,6 +520,10 @@ fi
 
 if [[ ${PLUGIN_WAPPLE} == true ]]; then
   source ${APP_WAPPLE}
+fi
+
+if [[ ${PLUGIN_CPE} == true ]]; then
+  source ${APP_CPE}
 fi
 
 #Remove Temporary RAW DATA []

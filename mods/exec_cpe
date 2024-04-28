@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+echo -e "---------------------------------------------\n"
+echo "CVE FINDER ... "
+
+python3 /home/kali/ost/ThreatTracer/cvefinder.py ${DOMAIN}

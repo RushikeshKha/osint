@@ -3,8 +3,9 @@
 function exec_httpx_toolkit() {
   which ${_HTTPX_TOOLKIT} >/dev/null
   if [[ "$?" -eq "0" ]]; then
+    echo -e "---------------------------------------------\n" 
     echo "HTTPX TOOLKIT... "
-    echo -e "---------------------------------------------\n"
+    
 
     ${_HTTPX_TOOLKIT} -l "${OUT}/${DOMAIN}/${RESULT_SUBDOMAIN}" -silent -title -cl -sc -td -ip -json > "${OUT}/${DOMAIN}/${RESULT_HTTPX_TOOLKIT}" | sed -e 's/^/\t - /'
   else

@@ -56,7 +56,7 @@ try:
 except FileNotFoundError:
     print(f"Error: File '{filename}' not found!")
 else:
-    print("JSON data loaded successfully!")
+    print("wapple: data loaded successfully!")
     for i in range(0,len(data)):
         if 'technologies' in data[i]:
             data[i]['wapple'] = []
@@ -77,4 +77,4 @@ with open("/home/kali/ost/output/"+sys.argv[1]+"/httpx_toolkit_status_title.json
     # Serialize the data into a JSON string using json.dumps
     json.dump(data, json_file, indent=4)  # Optional: indent for readability
 
-print("JSON data saved successfully!")
+print("wapple: data saved successfully!")
