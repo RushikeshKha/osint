@@ -4,6 +4,26 @@ import sys
 import requests
 import re
 import json
+import subprocess
+
+def run_naabu(target):
+    command = ["naabu", "-host", target]
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+
+    if process.returncode != 0:
+        print(f"Error occurred: {stderr.decode()}")
+        return []
+
+    open_ports = []
+    for line in stdout.decode().split("\n"):
+        print(line)
+        match = re.search(r"{}:(\d+)".format(target), line)
+        if match:
+            open_ports.append(int(match.group(1)))
+
+    return open_ports
+
 
 def find_cpes(component, version):
     base_url = "https://nvd.nist.gov/products/cpe/search/results"
@@ -31,8 +51,10 @@ except FileNotFoundError:
 else:
     print("cevfinder: Data loaded successfully!")
     for i in range(0,len(data)):
+        data[i]['naabu'] = []
         if 'wapple' in data[i]:
             data[i]['cpe'] = []
+            
             try:
                 print("subdomain: ",data[i]['input'])
                 for j in range(0,len(data[i]['wapple'][0])):
@@ -43,8 +65,12 @@ else:
                         data[i]['cpe'].append(find_cpes(product,version))
                     else:
                         print(data[i]['wapple'][0][j]['identifier']+" version NA")
+                
             except:
                 print('error')
+            print('=================')
+            print('Running Naabu\n')
+            data[i]['naabu'] = run_naabu(data[i]['input'])
         else:
             pass
 

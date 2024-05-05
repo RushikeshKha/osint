@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 100px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="file" id="dataFile" accept=".json">
+    <button onclick="loadData()">Load Data</button>
+    <table id="data-table">
+        <thead>
+        </thead>
+        <tbody id="data-body">
+        </tbody>
+    </table>
+
+    <script>
+        const tableBody = document.getElementById('data-body');
+        const tableHead = document.querySelector('thead');
+
+        // Hardcoded header names
+        const headerNames = [
+            "input",
+            "scheme",
+            "port",
+            "path",
+            "url",
+            "a",
+            "naabu",
+            "cnames",
+            "technologies",
+            "webserver",
+            "host",
+            "method",
+            "wapple",
+            "cpe"
+        ];
+
+        function createTableHeaders(data) {
+            const headerRow = document.createElement('tr');
+            const visibleColumns = headerNames; // All columns initially visible
+            for (let i = 0; i < headerNames.length; i++) {
+                const headerCell = document.createElement('th');
+                headerCell.textContent = headerNames[i];
+
+                const dropdown = document.createElement('div');
+                dropdown.classList.add('dropdown');
+                const dropdownContent = document.createElement('div');
+                dropdownContent.classList.add('dropdown-content');
+                const hideButton = document.createElement('button');
+                hideButton.textContent = 'Hide';
+                hideButton.addEventListener('click', () => {
+                    hideButton.parentElement.parentElement.style.display = 'none';
+                    visibleColumns.splice(visibleColumns.indexOf(headerNames[i]), 1); // Remove from visible list
+                });
+                dropdownContent.appendChild(hideButton);
+                dropdown.appendChild(dropdownContent);
+                headerCell.appendChild(dropdown);
+
+                headerRow.appendChild(headerCell);
+            }
+            tableHead.appendChild(headerRow);
+        }
+
+        function createTableData(data) {
+            const visibleColumns = headerNames;
+            for (let i = 0; i < data.length; i++) {
+                const dataRow = document.createElement('tr');
+                for (let j = 0; j < headerNames.length; j++) {
+                    if (visibleColumns.includes(headerNames[j])) {
+                        const dataCell = document.createElement('td');
+                        if (data[i].hasOwnProperty(headerNames[j])) {
+                            if (typeof data[i][headerNames[j]] === 'object' && data[i][headerNames[j]] !== null) {
+                                dataCell.textContent = JSON.stringify(data[i][headerNames[j]]);
+                            } else {
+                                dataCell.textContent = data[i][headerNames[j]];
+                            }
+                        } else {
+                            dataCell.textContent = 'null'; // Display null for missing attributes
+                        }
+                        dataRow.appendChild(dataCell);
+                    }
+                }
+                tableBody.appendChild(dataRow);
+            }
+        }
+
+        function loadData() {
+            const fileInput = document.getElementById('dataFile');
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const data = JSON.parse(e.target.result);
+                createTableHeaders(data);
+                createTableData(data);
+            };
+
+            reader.readAsText(fileInput.files[0]);
+        }
+    </script>
+</body>
+
+</html>
