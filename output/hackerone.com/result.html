@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 100px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="file" id="dataFile" accept=".json">
+    <button onclick="loadData()">Load Data</button>
+    <table id="data-table">
+        <thead>
+        <tr><th>input<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>scheme<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>port<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>path<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>url<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>a<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>naabu<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>cnames<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>technologies<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>webserver<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>host<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>method<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>wapple<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th><th>cpe<div class="dropdown"><div class="dropdown-content"><button>Hide</button></div></div></th></tr></thead>
+        <tbody id="data-body">
+        <tr><td>b.ns.hackerone.com</td><td>http</td><td>80</td><td>/</td><td>http://b.ns.hackerone.com:80</td><td>["162.159.1.31"]</td><td>[443,80,8443,53,8080]</td><td>null</td><td>["Cloudflare"]</td><td>cloudflare</td><td>162.159.1.31</td><td>GET</td><td>[null]</td><td>[]</td></tr><tr><td>a.ns.hackerone.com</td><td>http</td><td>80</td><td>/</td><td>http://a.ns.hackerone.com:80</td><td>["162.159.0.31"]</td><td>[8080,443,80,8443,53]</td><td>null</td><td>["Cloudflare"]</td><td>cloudflare</td><td>162.159.0.31</td><td>GET</td><td>[null]</td><td>[]</td></tr><tr><td>mta-sts.forwarding.hackerone.com</td><td>https</td><td>443</td><td>/</td><td>https://mta-sts.forwarding.hackerone.com:443</td><td>["185.199.108.153","185.199.109.153","185.199.110.153","185.199.111.153"]</td><td>[80,443]</td><td>["hacker0x01.github.io"]</td><td>["Fastly","GitHub Pages","Ruby on Rails","Varnish"]</td><td>GitHub.com</td><td>185.199.108.153</td><td>GET</td><td>[[{"category":"CDN","identifier":"Fastly","version":"nil"},{"category":"Caching","identifier":"Varnish","version":"nil"},{"category":"Web
+ frameworks","identifier":"Ruby on 
+Rails","version":"nil"},{"category":"Programming 
+languages","identifier":"Ruby","version":"nil"},{"category":"PaaS","identifier":"GitHub
+ Pages","version":"nil"}]]</td><td>[]</td></tr><tr><td>mta-sts.hackerone.com</td><td>https</td><td>443</td><td>/</td><td>https://mta-sts.hackerone.com:443</td><td>["185.199.109.153","185.199.108.153","185.199.110.153","185.199.111.153"]</td><td>[443,80]</td><td>["hacker0x01.github.io"]</td><td>["Fastly","GitHub Pages","Ruby on Rails","Varnish"]</td><td>GitHub.com</td><td>185.199.109.153</td><td>GET</td><td>[[{"category":"CDN","identifier":"Fastly","version":"nil"},{"category":"Caching","identifier":"Varnish","version":"nil"},{"category":"Web
+ frameworks","identifier":"Ruby on 
+Rails","version":"nil"},{"category":"Programming 
+languages","identifier":"Ruby","version":"nil"},{"category":"PaaS","identifier":"GitHub
+ Pages","version":"nil"}]]</td><td>[]</td></tr><tr><td>hackerone.com</td><td>https</td><td>443</td><td>/</td><td>https://hackerone.com:443</td><td>["172.64.151.42","104.18.36.214"]</td><td>[8443,443,8080,80]</td><td>null</td><td>["Cloudflare"]</td><td>cloudflare</td><td>172.64.151.42</td><td>GET</td><td>[[{"category":"Programming
+ languages","identifier":"PHP","version":"nil"},{"category":"Video 
+players","identifier":"YouTube","version":"nil"},{"category":"Font 
+scripts","identifier":"Google Font 
+API","version":"nil"},{"category":"Cookie 
+compliance","identifier":"TrustArc","version":"nil"},{"category":"Analytics","identifier":"Optimizely","version":"nil"},{"category":"Web
+ 
+servers","identifier":"Nginx","version":"nil"},{"category":"Databases","identifier":"MariaDB","version":"nil"},{"category":"Tag
+ managers","identifier":"Google Tag 
+Manager","version":"nil"},{"category":"CDN","identifier":"Cloudflare","version":"nil"},{"category":"CMS","identifier":"Drupal","version":"10"},{"category":"Caching","identifier":"Varnish","version":"nil"},{"category":"PaaS","identifier":"Pantheon","version":"nil"}]]</td><td>[["2.3:a:colorbox_project:colorbox:6.x-1.0:beta10:*:*:*:drupal:*:*","2.3:a:display_suite_project:display_suite:8.x-2.0:alpha10:*:*:*:drupal:*:*","2.3:a:drupal:drupal:8.0.0:alpha10:*:*:*:*:*:*","2.3:a:drupal:drupal:8.0.0:beta10:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0:-:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha1:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha2:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha3:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha4:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha5:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha6:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha7:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:beta1:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:beta2:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:rc1:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:rc2:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:rc3:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.1:*:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.2:*:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.3:*:*:*:*:*:*:*"]]</td></tr><tr><td>mta-sts.managed.hackerone.com</td><td>https</td><td>443</td><td>/</td><td>https://mta-sts.managed.hackerone.com:443</td><td>["185.199.111.153","185.199.109.153","185.199.108.153","185.199.110.153"]</td><td>[443,80]</td><td>["hacker0x01.github.io"]</td><td>["Fastly","GitHub Pages","Ruby on Rails","Varnish"]</td><td>GitHub.com</td><td>185.199.111.153</td><td>GET</td><td>[[{"category":"CDN","identifier":"Fastly","version":"nil"},{"category":"Caching","identifier":"Varnish","version":"nil"},{"category":"Web
+ frameworks","identifier":"Ruby on 
+Rails","version":"nil"},{"category":"Programming 
+languages","identifier":"Ruby","version":"nil"},{"category":"PaaS","identifier":"GitHub
+ Pages","version":"nil"}]]</td><td>[]</td></tr><tr><td>docs.hackerone.com</td><td>https</td><td>443</td><td>/</td><td>https://docs.hackerone.com:443</td><td>["104.18.36.214","172.64.151.42"]</td><td>[443,8080,8443,80]</td><td>null</td><td>["Cloudflare"]</td><td>cloudflare</td><td>104.18.36.214</td><td>GET</td><td>[[{"category":"CDN","identifier":"Cloudflare","version":"nil"}]]</td><td>[]</td></tr><tr><td>www.hackerone.com</td><td>https</td><td>443</td><td>/</td><td>https://www.hackerone.com:443</td><td>["172.64.151.42","104.18.36.214"]</td><td>[8443,80,443,8080]</td><td>null</td><td>["Cloudflare","Drupal","Fastly","Google Font API","Google Tag Manager","MariaDB","Nginx","PHP","Pantheon","Varnish","YouTube"]</td><td>cloudflare</td><td>172.64.151.42</td><td>GET</td><td>[[{"category":"Programming
+ languages","identifier":"PHP","version":"nil"},{"category":"Video 
+players","identifier":"YouTube","version":"nil"},{"category":"Font 
+scripts","identifier":"Google Font 
+API","version":"nil"},{"category":"Cookie 
+compliance","identifier":"TrustArc","version":"nil"},{"category":"Analytics","identifier":"Optimizely","version":"nil"},{"category":"Web
+ 
+servers","identifier":"Nginx","version":"nil"},{"category":"Databases","identifier":"MariaDB","version":"nil"},{"category":"Tag
+ managers","identifier":"Google Tag 
+Manager","version":"nil"},{"category":"CDN","identifier":"Cloudflare","version":"nil"},{"category":"CMS","identifier":"Drupal","version":"10"},{"category":"Caching","identifier":"Varnish","version":"nil"},{"category":"PaaS","identifier":"Pantheon","version":"nil"}]]</td><td>[["2.3:a:colorbox_project:colorbox:6.x-1.0:beta10:*:*:*:drupal:*:*","2.3:a:display_suite_project:display_suite:8.x-2.0:alpha10:*:*:*:drupal:*:*","2.3:a:drupal:drupal:8.0.0:alpha10:*:*:*:*:*:*","2.3:a:drupal:drupal:8.0.0:beta10:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0:-:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha1:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha2:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha3:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha4:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha5:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha6:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:alpha7:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:beta1:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:beta2:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:rc1:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:rc2:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.0:rc3:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.1:*:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.2:*:*:*:*:*:*:*","2.3:a:drupal:drupal:10.0.3:*:*:*:*:*:*:*"]]</td></tr><tr><td>api.hackerone.com</td><td>https</td><td>443</td><td>/</td><td>https://api.hackerone.com:443</td><td>["104.18.36.214","172.64.151.42"]</td><td>[8080,8443,443,80]</td><td>null</td><td>["Algolia","Cloudflare"]</td><td>cloudflare</td><td>104.18.36.214</td><td>GET</td><td>[[{"category":"CDN","identifier":"Cloudflare","version":"nil"},{"category":"CDN","identifier":"jsDelivr","version":"nil"}]]</td><td>[]</td></tr><tr><td>resources.hackerone.com</td><td>https</td><td>443</td><td>/</td><td>https://resources.hackerone.com:443</td><td>["52.60.165.183","52.60.160.16","3.98.63.202"]</td><td>[]</td><td>["read.uberflip.com"]</td><td>null</td><td>null</td><td>52.60.165.183</td><td>GET</td><td>null</td><td>null</td></tr><tr><td>gslink.hackerone.com</td><td>https</td><td>443</td><td>/</td><td>https://gslink.hackerone.com:443</td><td>["108.159.91.27","108.159.91.36","108.159.91.13","108.159.91.7"]</td><td>[443,80]</td><td>["d3rxkn2g2bbsjp.cloudfront.net"]</td><td>["Amazon Cloudfront","Amazon Web Services","Nginx"]</td><td>nginx</td><td>108.159.91.27</td><td>GET</td><td>[[{"category":"CDN","identifier":"Amazon
+ Cloudfront","version":"nil"},{"category":"Web 
+servers","identifier":"Nginx","version":"nil"},{"category":"PaaS","identifier":"Amazon
+ Web Services","version":"nil"}]]</td><td>[]</td></tr><tr><td>support.hackerone.com</td><td>https</td><td>443</td><td>/</td><td>https://support.hackerone.com:443</td><td>["34.205.216.73","52.20.18.211","52.204.142.121","3.212.222.82","52.203.181.86"]</td><td>[443,80]</td><td>["2fe254e58a0ea8096400b2fda121ee35.freshdesk.com","fwfd-use1-lb208.freshdesk.com"]</td><td>["Envoy"]</td><td>fwe</td><td>34.205.216.73</td><td>GET</td><td>[[{"category":"Font
+ scripts","identifier":"Google Font 
+API","version":"nil"},{"category":"Web frameworks","identifier":"Ruby on
+ Rails","version":"nil"},{"category":"JavaScript 
+libraries","identifier":"jQuery","version":"3.6.0"},{"category":"Programming
+ languages","identifier":"Ruby","version":"nil"},{"category":"Reverse 
+proxies","identifier":"Envoy","version":"nil"}]]</td><td>[[]]</td></tr></tbody>
+    </table>
+
+    <script>
+        const tableBody = document.getElementById('data-body');
+        const tableHead = document.querySelector('thead');
+
+        // Hardcoded header names
+        const headerNames = [
+            "input",
+            "scheme",
+            "port",
+            "path",
+            "url",
+            "a",
+            "naabu",
+            "cnames",
+            "technologies",
+            "webserver",
+            "host",
+            "method",
+            "wapple",
+            "cpe"
+        ];
+
+        function createTableHeaders(data) {
+            const headerRow = document.createElement('tr');
+            const visibleColumns = headerNames; // All columns initially visible
+            for (let i = 0; i < headerNames.length; i++) {
+                const headerCell = document.createElement('th');
+                headerCell.textContent = headerNames[i];
+
+                const dropdown = document.createElement('div');
+                dropdown.classList.add('dropdown');
+                const dropdownContent = document.createElement('div');
+                dropdownContent.classList.add('dropdown-content');
+                const hideButton = document.createElement('button');
+                hideButton.textContent = 'Hide';
+                hideButton.addEventListener('click', () => {
+                    hideButton.parentElement.parentElement.style.display = 'none';
+                    visibleColumns.splice(visibleColumns.indexOf(headerNames[i]), 1); // Remove from visible list
+                });
+                dropdownContent.appendChild(hideButton);
+                dropdown.appendChild(dropdownContent);
+                headerCell.appendChild(dropdown);
+
+                headerRow.appendChild(headerCell);
+            }
+            tableHead.appendChild(headerRow);
+        }
+
+        function createTableData(data) {
+            const visibleColumns = headerNames;
+            for (let i = 0; i < data.length; i++) {
+                const dataRow = document.createElement('tr');
+                for (let j = 0; j < headerNames.length; j++) {
+                    if (visibleColumns.includes(headerNames[j])) {
+                        const dataCell = document.createElement('td');
+                        if (data[i].hasOwnProperty(headerNames[j])) {
+                            if (typeof data[i][headerNames[j]] === 'object' && data[i][headerNames[j]] !== null) {
+                                dataCell.textContent = JSON.stringify(data[i][headerNames[j]]);
+                            } else {
+                                dataCell.textContent = data[i][headerNames[j]];
+                            }
+                        } else {
+                            dataCell.textContent = 'null'; // Display null for missing attributes
+                        }
+                        dataRow.appendChild(dataCell);
+                    }
+                }
+                tableBody.appendChild(dataRow);
+            }
+        }
+
+        function loadData() {
+            const fileInput = document.getElementById('dataFile');
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const data = JSON.parse(e.target.result);
+                createTableHeaders(data);
+                createTableData(data);
+            };
+
+            reader.readAsText(fileInput.files[0]);
+        }
+    </script>
+
+
+</body></html>
